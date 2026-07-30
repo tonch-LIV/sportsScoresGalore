@@ -8,15 +8,13 @@
   - [Technologies](#technologies)
 - [Backend Repository](#backend-repository)
 - [Screenshots](#screenshots)
-- [React + Vite](#react--vite)
-  - [React Compiler](#react-compiler)
-  - [ESLint configuration](#expanding-the-eslint-configuration)
+- [Local Development](#local-development)
 - [Changelog](#changelog)
--[If I Had More Time](#if-i-had-more-time)
+<!-- - [If I Had More Time](#if-i-had-more-time) -->
 
 ## Overview
 
-Sports, Scores, Galore is a React single-page application that allows users to search and display soccer fixtures, scores, match status, participating teams, and selected match details from supported leagues through a clean and responsive interface.
+Sports, Scores, Galore is a React single-page application that allows users to search and display soccer fixtures, scores, match status, participating teams, and selected match details from supported competitions through a clean and responsive interface.
 
 The React frontend communicates with a custom Express backend, which retrieves data from public sports APIs (Footballdata.io), removes unnecessary fields, and returns only the information needed by the frontend.
 
@@ -34,9 +32,14 @@ Additional leagues, competitions, and sports may be added later.
 
 ### Current Goals
 
-- Select a supported soccer league
+- Select a supported soccer competition
 - Select matches by date
-- Display fixtures, scores, team info, and match status and details (completed or time set, location, etc.)
+- Search for scheduled and completed matches
+- Display home and away teams
+- Display team and competition logos when available
+- Display match scores and status
+- Display scheduled start time when match has not begun
+- View venue and location information for selected match
 - Refresh scores manually
 - Provide loading, error, and empty-result messages
 
@@ -85,22 +88,19 @@ The Express backend must also be running for API requests to succeed.
 
 *(Coming soon)*
 
-## React + Vite
+## Local Development
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Install dependencies:
 
-Currently, two official plugins are available:
+```bash
+npm install
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+To start the frontend, (*The Sports, Scores, Galore Express backend must also be running for match requests to succeed.*)
 
-### React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-### Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm run dev
+```
 
 ## Changelog
 
@@ -111,5 +111,6 @@ If you are developing a production application, we recommend using TypeScript wi
   - Confirmed the initial set of five supported competitions after testing.
   - re-structure / re-word of readme and enclosed info (plus table of contents up top).
 
-  ## If I Had More Time
-  -
+  <!-- ## If I Had More Time
+
+  - -->
