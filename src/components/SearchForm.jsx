@@ -15,8 +15,8 @@ function SearchForm({
   onSubmit,
 }) {
   return (
-    <form onSubmit={onSubmit}>
-      <div>
+    <form className="search-form" onSubmit={onSubmit}>
+      <div className="form-field">
         <label htmlFor="league">Competition</label>
         <select
           id="league"
@@ -33,7 +33,7 @@ function SearchForm({
           </select>
       </div>
 
-      <div>
+      <div className="form-field">
         <label htmlFor="match-date">Date</label>
         <input
           id="match-date"

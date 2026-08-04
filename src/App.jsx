@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import SearchForm from './components/SearchForm.jsx';
 import MatchList from './components/MatchList.jsx';
+import MatchDetails from './components/MatchDetails.jsx';
 
 import './App.css';
 
@@ -55,7 +56,7 @@ function App() {
 
   return (
     <main className="app">
-      <header>
+      <header className="app-header">
         <h1>Sports, Scores, Galore!</h1>
         <p>Search futbol fixtures and scores by competition and date.</p>
       </header>
@@ -74,11 +75,21 @@ function App() {
       {error && <p role="alert">{error}</p>}
 
       {!loading && !error && (
-        <MatchList 
-          matches={matches} 
-          hasSearched={hasSearched} 
-          selectedMatchId={selectedMatch?.id}  // safely returns `undefined` when no match selected
-          onSelectMatch={setSelectedMatch} />
+        <div className="dashboard">
+          <MatchList 
+            matches={matches} 
+            hasSearched={hasSearched} 
+            selectedMatchId={selectedMatch?.id}  // safely returns `undefined` when no match selected
+            onSelectMatch={setSelectedMatch} 
+          />
+
+          <MatchDetails match={selectedMatch} />
+
+          <aside className="match-extras">
+            <h2>Match Extras</h2>
+            <p>Weather and nearby information will appear here later.</p>
+          </aside>
+        </div>
       )}
     </main>
   )

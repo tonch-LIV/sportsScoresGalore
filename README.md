@@ -128,7 +128,11 @@ npm run dev
   - added `selectedMatch` state; `App.jsx`.
   - passed selection controls through `<MatchList />`; `App.jsx`.
   - updated `MatchList()` parameters to reflect additions ^^; `MatchList.jsx`.
-  
+  - created `MatchDetails.jsx`; `../components/`.
+  - imported `MatchDetails`, added under `return` statement, while enclosing the corresponding 'sibling' statements; `App.jsx`.
+  - added missing 'Venue' name validation; `MatchDetails.jsx`.
+  - minor css overhaul for wireframe adjacent look, removing vite tamplate ; `index.css`, `App,css` `SearchForm.jsx`.
+
   <!-- ## If I Had More Time
 
   - -->

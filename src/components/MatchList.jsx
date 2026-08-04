@@ -74,10 +74,12 @@ function MatchList({
               )}
               <button
                 type="button"
-                onClick={() => onSelectMatch(match)}  // sends 'match' back to `App`;   setSelectedMatch` updates state
+                
+                {/* // sends 'match' back to `App`;   setSelectedMatch` updates state */}
+                onClick={() => onSelectMatch(match)}  
                 aria-pressed={selectedMatchId === match.id}
               >
-                {selectedmatchId === match.id ? 'Selected' : 'View details'}
+                {selectedMatchId === match.id ? 'Selected' : 'View details'}
               </button>
             </article>
           )
