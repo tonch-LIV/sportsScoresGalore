@@ -12,6 +12,7 @@ function App() {
   const [league, setLeague] = useState('')
   const [date, setDate] = useState('')
   const [matches, setMatches] = useState([])
+  const [selectedMatch, setSelectedMatch] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [hasSearched, setHasSearched] = useState(false)
@@ -22,6 +23,8 @@ function App() {
     setLoading(true)
     setError('')
 
+    setSelectedMatch(null)  // clears old details while new search runs
+
     try {
       const response = await axios.get(`${API_URL}/api/matches`, {
         params: {
@@ -30,10 +33,15 @@ function App() {
         },
       })
 
-      setMatches(response.data.matches ?? [])
+      // auto select first match returned 
+      const returnedMatches = response.data.matches ?? []
+
+      setMatches(returnedMatches)
+      setSelectedMatch(returnedMatches[0] ?? null)  // becomes null if array empty
       setHasSearched(true)
     } catch (requestError) {
       setMatches([])
+      setSelectedMatch(null)
       setHasSearched(true)
 
       setError(
@@ -66,7 +74,11 @@ function App() {
       {error && <p role="alert">{error}</p>}
 
       {!loading && !error && (
-        <MatchList matches={matches} hasSearched={hasSearched} />
+        <MatchList 
+          matches={matches} 
+          hasSearched={hasSearched} 
+          selectedMatchId={selectedMatch?.id}  // safely returns `undefined` when no match selected
+          onSelectMatch={setSelectedMatch} />
       )}
     </main>
   )

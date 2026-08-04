@@ -120,7 +120,15 @@ npm run dev
   - updated `App.jsx` past vite template with actual project.
   - migrated some 'legacy' rules from `Code-301-PDX/_MATERIALS/.eslintrc.json`; `eqeqeq`, `curly`, `no-var`, `prefer-const` (commented at the moment); `eslint.config.js`.
   - rendering and searching functioning through web browser! (unformatted, but all the same).
-
+    - React form
+      - Express validation
+      - API source (Footballdata.io) request
+      - normalized response
+      - React result or empty message
+  - added `selectedMatch` state; `App.jsx`.
+  - passed selection controls through `<MatchList />`; `App.jsx`.
+  - updated `MatchList()` parameters to reflect additions ^^; `MatchList.jsx`.
+  
   <!-- ## If I Had More Time
 
   - -->

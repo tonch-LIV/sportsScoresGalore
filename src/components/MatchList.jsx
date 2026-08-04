@@ -1,4 +1,9 @@
-function MatchList({ matches, hasSearched}) {
+function MatchList({
+  matches,
+  hasSearched,
+  selectedMatchId,
+  onSelectMatch,
+}) {
   if (!hasSearched) {
     return <p>Select a competition and date to search for matches.</p>
   }
@@ -22,7 +27,14 @@ function MatchList({ matches, hasSearched}) {
               : match.displayStatus
 
           return(
-            <article className="match-card" key={match.id}>
+            <article 
+              className={
+                selectedMatchId === match.id 
+                ? 'match-card selected' 
+                : 'match-card'
+              } 
+              key={match.id}
+            >
               <div className="team">
                 {match.homeTeam.logo && (
                   <img
@@ -60,6 +72,13 @@ function MatchList({ matches, hasSearched}) {
                   {match.venue.location && ` - ${match.venue.location}`}
                 </p>
               )}
+              <button
+                type="button"
+                onClick={() => onSelectMatch(match)}  // sends 'match' back to `App`;   setSelectedMatch` updates state
+                aria-pressed={selectedMatchId === match.id}
+              >
+                {selectedmatchId === match.id ? 'Selected' : 'View details'}
+              </button>
             </article>
           )
         })}
