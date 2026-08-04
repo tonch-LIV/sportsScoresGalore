@@ -76,10 +76,11 @@ function App() {
 
       {!loading && !error && (
         <div className="dashboard">
+          {/* Optional chaining safely returns `undefined` when no match selected */}
           <MatchList 
             matches={matches} 
             hasSearched={hasSearched} 
-            selectedMatchId={selectedMatch?.id}  // safely returns `undefined` when no match selected
+            selectedMatchId={selectedMatch?.id}  
             onSelectMatch={setSelectedMatch} 
           />
 

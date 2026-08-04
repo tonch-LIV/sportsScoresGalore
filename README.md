@@ -132,7 +132,8 @@ npm run dev
   - imported `MatchDetails`, added under `return` statement, while enclosing the corresponding 'sibling' statements; `App.jsx`.
   - added missing 'Venue' name validation; `MatchDetails.jsx`.
   - minor css overhaul for wireframe adjacent look, removing vite tamplate ; `index.css`, `App,css` `SearchForm.jsx`.
-
+  - comment syntax fixed; `App.jsx`, `MatchList.jsx`.
+  - both `lint` and `build` passing atp.
   <!-- ## If I Had More Time
 
   - -->

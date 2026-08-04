@@ -72,11 +72,11 @@ function MatchList({
                   {match.venue.location && ` - ${match.venue.location}`}
                 </p>
               )}
+
+              {/* Selecting match sends 'match' back to `App`;   setSelectedMatch` updates state */}
               <button
                 type="button"
-                
-                {/* // sends 'match' back to `App`;   setSelectedMatch` updates state */}
-                onClick={() => onSelectMatch(match)}  
+                onClick={() => onSelectMatch(match)} 
                 aria-pressed={selectedMatchId === match.id}
               >
                 {selectedMatchId === match.id ? 'Selected' : 'View details'}
