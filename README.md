@@ -96,20 +96,30 @@ Install dependencies:
 npm install
 ```
 
-To start the frontend, (*The Sports, Scores, Galore Express backend must also be running for match requests to succeed.*)
+To start the frontend, 
 
 ```bash
 npm run dev
 ```
 
+(*The Sports, Scores, Galore Express backend must also be running for match requests to succeed.*)
+
 ## Changelog
 
 - Initial setup using Vite + React template.  
-- Merge of conflicts from creating repo with License before initiliazing / pushing to git.  
+- Merge of conflicts from creating repo with License before initializing / pushing to git.  
 - **`testDoor`** branch created.
   - Selected Footballdata.io as the primary soccer data provider.
   - Confirmed the initial set of five supported competitions after testing.
-  - re-structure / re-word of readme and enclosed info (plus table of contents up top).
+  - Restructured and revised README, including table of contents.
+  - created `components` subdirectory -> `SearchForm.jsx` and `MatchList.jsx`.
+  - installed axios.
+  - defined `VITE_API_URL` variable; `.env`.
+  - started controlled form; `SearchForm.jsx`,
+  - `MatchList.jsx` handles intructions for no search made, 'empty message' for no results found, and the return of cards for successful request.
+  - updated `App.jsx` past vite template with actual project.
+  - migrated some 'legacy' rules from `Code-301-PDX/_MATERIALS/.eslintrc.json`; `eqeqeq`, `curly`, `no-var`, `prefer-const` (commented at the moment); `eslint.config.js`.
+  - rendering and searching functioning through web browser! (unformatted, but all the same).
 
   <!-- ## If I Had More Time
 
