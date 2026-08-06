@@ -9,20 +9,47 @@ import './App.css';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001'
 
+// reusable match function
+function matchIncludesTeam(match, filterValue) {
+  const normalizedFilter = filterValue.trim().toLowerCase()
+
+  if (!normalizedFilter) {
+    return true
+  }
+
+  // case insensitive search
+  return (
+    match.homeTeam.name.toLowerCase().includes(normalizedFilter) ||
+    match.awayTeam.name.toLowerCase().includes(normalizedFilter)
+  )
+}
+
 function App() {
   const [league, setLeague] = useState('')
   const [date, setDate] = useState('')
+  const [teamFilter, setTeamFilter] = useState('')
   const [matches, setMatches] = useState([])
   const [selectedMatch, setSelectedMatch] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [hasSearched, setHasSearched] = useState(false)
 
+  function handleTeamFilterChange(event) {
+    const nextFilter = event.target.value
+    const firstMatchingMatch = matches.find((match) => 
+      matchIncludesTeam(match, nextFilter),
+    )
+
+    setTeamFilter(nextFilter)
+    setSelectedMatch(firstMatchingMatch ?? null)
+  };
+
   async function handleSearch(event) {
     event.preventDefault()
 
     setLoading(true)
     setError('')
+    setTeamFilter('') // resets filter on new searches
 
     setSelectedMatch(null)  // clears old details while new search runs
 
@@ -54,6 +81,11 @@ function App() {
     }
   }
 
+
+  const filteredMatches = matches.filter((match) => 
+    matchIncludesTeam(match, teamFilter),
+  )
+
   return (
     <main className="app">
       <header className="app-header">
@@ -70,6 +102,19 @@ function App() {
         onSubmit={handleSearch}
       />
 
+      {/* input for returned matches filter */}
+      <div className="form-field team-filter">
+        <label htmlFor="team-filter">Filter returned matches by team</label>
+        <input
+          id="team-filter"
+          type="search"
+          value={teamFilter}
+          placeholder="Enter a team name"
+          onChange={handleTeamFilterChange}
+          disabled={loading || !hasSearched || matches.length === 0}
+        />
+      </div>
+
       {loading && <p role="status">Loading matches...</p>}
 
       {error && <p role="alert">{error}</p>}
@@ -78,7 +123,8 @@ function App() {
         <div className="dashboard">
           {/* Optional chaining safely returns `undefined` when no match selected */}
           <MatchList 
-            matches={matches} 
+            matches={filteredMatches}
+            teamFilter={teamFilter} 
             hasSearched={hasSearched} 
             selectedMatchId={selectedMatch?.id}  
             onSelectMatch={setSelectedMatch} 
