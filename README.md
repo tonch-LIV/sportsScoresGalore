@@ -135,7 +135,20 @@ npm run dev
   - comment syntax fixed; `App.jsx`, `MatchList.jsx`.
   - both `lint` and `build` passing atp.
   - [accessibility lighthouse screenshot](link).
-  - clean up 
+  - clean up.
+
+- **`filter`** branch created. (narrow (competition and date) results by team)
+   - created reauable match function that makes searches case-insensitive; `matchIncludesTeam()`; `App.jsx`.
+   - created  `teamFilter` state, which remembers what thew user has typed; `App()`; `App.jsx`.
+   - created changeHandler `handleteamFilterChange()` that both, updates state and selects the first result; rather than showing non-relevant info on details panel; `App.jsx`.
+   - reset the filter on new searches ; `handleSearch()`; `App.jsx`.
+   - created `filteredMatches` to produce filtered array, separate from original `matches` array; `App.jsx`.
+   - added filter input fr user in the `return` statement; `App.jsx`.
+   - passed filtered changes to `<MatchList>`; `App.jsx`.
+   - added `teamFilter` to props for `MatchList()` to use inside `emptyMessage()` and provide accurate message for ewmpty results; adding distinction between 'no matches returned fro api' and 'matches returned, but none matching filter'; `MatchList.jsx`.
+   - added css styling; `.form-field` will handle label and input; `App.css`.
+   - [screenshots of feature](path)
+
   <!-- ## If I Had More Time
 
   - -->

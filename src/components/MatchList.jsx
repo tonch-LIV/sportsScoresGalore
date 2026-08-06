@@ -1,5 +1,6 @@
 function MatchList({
   matches,
+  teamFilter,
   hasSearched,
   selectedMatchId,
   onSelectMatch,
@@ -9,7 +10,11 @@ function MatchList({
   }
 
   if (matches.length === 0) {
-    return <p>No Matches were found for that competition and date.</p>
+    const emptyMessage = teamFilter.trim()
+    ? `No Matches include a team matching "${teamFilter.trim()}".`
+    : `No Matches were found for that competition and date.`
+
+    return <p>{emptyMessage}</p>
   }
 
   return(

@@ -35,6 +35,11 @@
   box-shadow: 0 1rem 3rem rgba(10, 4, 26, 0.25);
 }
 
+.team-filter {
+  width: min(28rem, 100%);
+  margin: -1rem auto 2rem;
+}
+
 .form-field {
   display: grid;
   gap: 0.4rem;
