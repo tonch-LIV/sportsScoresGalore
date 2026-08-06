@@ -1,28 +1,71 @@
 # Sports, Scores, Galore  
 
+- [Overview](#overview)
+  - [Supported Competitions](#supported-competitions)
+  - [Current Goals](#current-goals)
+  - [Planned Features (stretch)](#planned-features-stretch)
+  - [Application Layout](#application-layout)
+  - [Technologies](#technologies)
+- [Backend Repository](#backend-repository)
+- [Screenshots](#screenshots)
+- [Local Development](#local-development)
+- [Changelog](#changelog)
+<!-- - [If I Had More Time](#if-i-had-more-time) -->
+
 ## Overview
 
-Sports, Scores, Galore is a React single-page application that allows users to search for soccer matches by league and date, displaying live scores, upcoming fixtures, and match information through a clean and responsive interface.
+Sports, Scores, Galore is a React single-page application that allows users to search and display soccer fixtures, scores, match status, participating teams, and selected match details from supported competitions through a clean and responsive interface.
 
-The application communicates with a custom Express backend, which retrieves data from public sports APIs and returns only the information needed by the frontend.
+The React frontend communicates with a custom Express backend, which retrieves data from public sports APIs (Footballdata.io), removes unnecessary fields, and returns only the information needed by the frontend.
+
+### Supported Competitions
+
+The initial version of the application will support:
+
+- Premier League (England)
+- La Liga (Spain)
+- UEFA Champions League
+- UEFA Europa League
+- FIFA World Cup
+
+Additional leagues, competitions, and sports may be added later.
 
 ### Current Goals
 
-- Search matches by supported soccer league
-- Search matches by date
-- Display fixtures, live scores, and match status
-- View selected match details
+- Select a supported soccer competition
+- Select matches by date
+- Search for scheduled and completed matches
+- Display home and away teams
+- Display team and competition logos when available
+- Display match scores and status
+- Display scheduled start time when match has not begun
+- View venue and location information for selected match
 - Refresh scores manually
+- Provide loading, error, and empty-result messages
 
 ### Planned Features (stretch)
 
 - Filter matches by team
-- Venue and city information
-- Current and forecast weather
+- Forecast weather
 - Team and player statistics
 - Auth0 user authentication
 - Save favorite teams using MongoDB
+- Quickly retrieve matches for favorite teams
 - Nearby restaurants and local information
+- Support additional soccer competitions and other sports
+
+### Application Layout
+
+The main page will use a three-column structure:
+
+1. **Match Results**  
+   Displays matches returned by the selected competition and date.
+2. **Selected Match Details**  
+   Displays the venue, location, date, and starting time for the selected match.
+3. **Selected Match Extras**  
+   Reserved for weather, restaurants, statistics, and other stretch features.
+
+On smaller screens, these sections will stack vertically.
 
 ### Technologies
 
@@ -37,30 +80,62 @@ The application communicates with a custom Express backend, which retrieves data
 
 ## Backend Repository
 
-This project depends on the [Sports, Scores, Galore backend API](https://github.com/tonch-LIV/sportsScoresGalore_backend), which handles requests to external sports services and manages application data.
+This project depends on the [Sports, Scores, Galore backend API](https://github.com/tonch-LIV/sportsScoresGalore_backend), which handles requests to external sports services ([Footballdata.io API](https://footballdata.io/)) and manages application data.
 
-## Screenshot
+The Express backend must also be running for API requests to succeed.
 
-*(Coming soon)*
+## Screenshots
 
-## React + Vite
+*([Coming soon](link))*
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Local Development
 
-Currently, two official plugins are available:
+Install dependencies:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+npm install
+```
 
-### React Compiler
+To start the frontend, 
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm run dev
+```
 
-### Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+(*The Sports, Scores, Galore Express backend must also be running for match requests to succeed.*)
 
 ## Changelog
 
-- Initial setup using Vite template.  
-- Merge of conflicts from creating repo with License before initiliazing / pushing to git.  
+- Initial setup using Vite + React template.  
+- Merge of conflicts from creating repo with License before initializing / pushing to git.  
+- **`testDoor`** branch created.
+  - Selected Footballdata.io as the primary soccer data provider.
+  - Confirmed the initial set of five supported competitions after testing.
+  - Restructured and revised README, including table of contents.
+  - created `components` subdirectory -> `SearchForm.jsx` and `MatchList.jsx`.
+  - installed axios.
+  - defined `VITE_API_URL` variable; `.env`.
+  - started controlled form; `SearchForm.jsx`,
+  - `MatchList.jsx` handles intructions for no search made, 'empty message' for no results found, and the return of cards for successful request.
+  - updated `App.jsx` past vite template with actual project.
+  - migrated some 'legacy' rules from `Code-301-PDX/_MATERIALS/.eslintrc.json`; `eqeqeq`, `curly`, `no-var`, `prefer-const` (commented at the moment); `eslint.config.js`.
+  - rendering and searching functioning through web browser! (unformatted, but all the same).
+    - React form
+      - Express validation
+      - API source (Footballdata.io) request
+      - normalized response
+      - React result or empty message
+  - added `selectedMatch` state; `App.jsx`.
+  - passed selection controls through `<MatchList />`; `App.jsx`.
+  - updated `MatchList()` parameters to reflect additions ^^; `MatchList.jsx`.
+  - created `MatchDetails.jsx`; `../components/`.
+  - imported `MatchDetails`, added under `return` statement, while enclosing the corresponding 'sibling' statements; `App.jsx`.
+  - added missing 'Venue' name validation; `MatchDetails.jsx`.
+  - minor css overhaul for wireframe adjacent look, removing vite tamplate ; `index.css`, `App,css` `SearchForm.jsx`.
+  - comment syntax fixed; `App.jsx`, `MatchList.jsx`.
+  - both `lint` and `build` passing atp.
+  - [accessibility lighthouse screenshot](link).
+  - clean up 
+  <!-- ## If I Had More Time
+
+  - -->
