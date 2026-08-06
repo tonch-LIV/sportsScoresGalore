@@ -86,7 +86,7 @@ The Express backend must also be running for API requests to succeed.
 
 ## Screenshots
 
-*(Coming soon)*
+*([Coming soon](link))*
 
 ## Local Development
 
@@ -134,6 +134,8 @@ npm run dev
   - minor css overhaul for wireframe adjacent look, removing vite tamplate ; `index.css`, `App,css` `SearchForm.jsx`.
   - comment syntax fixed; `App.jsx`, `MatchList.jsx`.
   - both `lint` and `build` passing atp.
+  - [accessibility lighthouse screenshot](link).
+  - clean up 
   <!-- ## If I Had More Time
 
   - -->
